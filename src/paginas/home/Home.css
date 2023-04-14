@@ -1,5 +1,5 @@
 .fotoHome {
-    width: max(350px, 65%);
+    width: max(100px, 100%);
     margin: 0 auto;
     display: block;
     transform: rotateY(180deg);

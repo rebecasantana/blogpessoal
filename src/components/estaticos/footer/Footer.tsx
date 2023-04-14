@@ -15,7 +15,7 @@ function Footer() {
         alignItems="center"
       >
         <Grid alignItems="center" item xs={12}>
-          <Box style={{ backgroundColor: "#3F51B5", height: "120px" }}>
+          <Box style={{ backgroundColor: "#3F51B5", height: "100px" }}>
             <Box
               paddingTop={1}
               display="flex"
@@ -27,8 +27,7 @@ function Footer() {
                 align="center"
                 gutterBottom
                 style={{ color: "white" }}
-              >
-                Siga-nos nas redes sociais{" "}
+              > Siga-nos nas redes sociais{" "}
               </Typography>
             </Box>
             <Box display="flex" alignItems="center" justifyContent="center">
@@ -36,20 +35,20 @@ function Footer() {
                 href="https://www.facebook.com/profile.php?id=100091799351090"
                 target="_blank"
               >
-                <FacebookIcon style={{ fontSize: 60, color: "white" }} />
+                <FacebookIcon style={{ fontSize: 30, color: "white" }} />
               </a>
               <a href="https://www.instagram.com/cursoemfeed/" target="_blank">
-                <InstagramIcon style={{ fontSize: 60, color: "white" }} />
+                <InstagramIcon style={{ fontSize: 30, color: "white" }} />
               </a>
               <a
                 href="https://www.linkedin.com/in/rebecasantana/"
                 target="_blank"
               >
-                <LinkedInIcon style={{ fontSize: 60, color: "white" }} />
+                <LinkedInIcon style={{ fontSize: 30, color: "white" }} />
               </a>
             </Box>
           </Box>
-          <Box style={{ backgroundColor: "#303F9F", height: "60px" }}>
+          <Box style={{ backgroundColor: "#3F51B5", height: "35px" }}>
             <Box paddingTop={1}>
               <Typography
                 variant="subtitle2"
@@ -61,9 +60,6 @@ function Footer() {
               </Typography>
             </Box>
             <Box>
-              {/*<a target="_blank" href="https://brasil.generation.org">
-                                <Typography variant="subtitle2" gutterBottom style={{ color: "white" }} align="center">brasil.generation.org</Typography>
-                            </a>*/}
             </Box>
           </Box>
         </Grid>

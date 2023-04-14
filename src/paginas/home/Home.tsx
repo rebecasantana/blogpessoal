@@ -11,7 +11,7 @@ function Home() {
         direction="row"
         justifyContent="center"
         alignItems="center"
-        style={{ backgroundColor: "var(--blue-600)" }}
+        style={{ backgroundColor: "#EBF2F2" }}
       >
         <Grid alignItems="center" item xs={6}>
           <Box paddingX={20}>
@@ -19,22 +19,22 @@ function Home() {
               variant="h3"
               gutterBottom
               color="textPrimary"
-              component="p"
-              align="end"
-              style={{ color: "dark", fontWeight: "bold" }}
+              component="h3"
+              align="center"
+              style={{ color: "#3F51B5", fontWeight: "bold" }}
             >
-              Seja bem vindo(a)!
+              Olá,Estudante(a)!
             </Typography>
             <Typography
               variant="h5"
               gutterBottom
               color="textPrimary"
               component="h5"
-              align="unset"
-              style={{ color: "dark", fontWeight: "bold" }}
+              align="center"
+              style={{ color: "#3F51B5", fontWeight: "normal" }}
             >
-              {" "}
-              expresse aqui os seus pensamentos e opiniões!
+              Aqui estão algumas dicas e conteúdos para ajudá-lo a aprender
+              inglês.
             </Typography>
           </Box>
           <Box display="flex" justifyContent="center">
@@ -43,7 +43,7 @@ function Home() {
               variant="outlined"
               style={{
                 borderColor: "white",
-                backgroundColor: "var(--dark-600)",
+                backgroundColor: "#3F51B5",
                 color: "white",
               }}
             >
@@ -53,9 +53,10 @@ function Home() {
         </Grid>
         <Grid item xs={6}>
           <img
-            src="https://i.imgur.com/XEmGzkd.png"
+            src="https://ik.imagekit.io/zc68f3m83/English_teacher-pana__1_.png?updatedAt=1681429625289"
             alt=""
-            className="fotoHome"
+            width="540px"
+            height="500px"
           />
         </Grid>
         <Grid xs={12} style={{ backgroundColor: "white" }}></Grid>
