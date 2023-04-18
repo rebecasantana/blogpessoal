@@ -2,7 +2,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import "./Login.css";
 import { Box, Typography, Button, Grid, TextField } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import UsuarioLogin from "../../models/UserLogin";
+import UsuarioLogin from "../../models/UsuarioLogin";
 import { login } from "../../services/service";
 import useLocalStorage from "react-use-localstorage";
 
