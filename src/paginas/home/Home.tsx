@@ -11,7 +11,7 @@ function Home() {
         direction="row"
         justifyContent="center"
         alignItems="center"
-        style={{ backgroundColor: "#EBF2F2" }}
+        className="caixa"
       >
         <Grid alignItems="center" item xs={6}>
           <Box paddingX={20}>
@@ -21,7 +21,7 @@ function Home() {
               color="textPrimary"
               component="h3"
               align="center"
-              style={{ color: "#3F51B5", fontWeight: "bold" }}
+              className="titulo"
             >
               Olá,Estudante(a)!
             </Typography>
@@ -31,7 +31,7 @@ function Home() {
               color="textPrimary"
               component="h5"
               align="center"
-              style={{ color: "#3F51B5", fontWeight: "normal" }}
+              className="titulo"
             >
               Aqui estão algumas dicas e conteúdos para ajudá-lo a aprender
               inglês.
@@ -39,14 +39,7 @@ function Home() {
           </Box>
           <Box display="flex" justifyContent="center">
             <Box marginRight={1}></Box>
-            <Button
-              variant="outlined"
-              style={{
-                borderColor: "white",
-                backgroundColor: "#3F51B5",
-                color: "white",
-              }}
-            >
+            <Button variant="outlined" className="botao">
               Ver Postagens
             </Button>
           </Box>
@@ -59,7 +52,7 @@ function Home() {
             height="500px"
           />
         </Grid>
-        <Grid xs={12} style={{ backgroundColor: "white" }}></Grid>
+        <Grid xs={12} className="postagens"></Grid>
       </Grid>
     </>
   );

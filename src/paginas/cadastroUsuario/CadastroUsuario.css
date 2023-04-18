@@ -1,7 +1,11 @@
-.fotoCadastroUsuario{
+.imagem2{
   background-image: url(https://ik.imagekit.io/zc68f3m83/Mobile_login-amico.png?updatedAt=1681509409268);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  min-height:30vh;
+  min-height:66vh;
+}
+
+.textos2{
+  font-weight: bold !important;
 }

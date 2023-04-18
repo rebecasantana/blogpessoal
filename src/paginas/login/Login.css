@@ -6,12 +6,10 @@
   background-position: center;
 }
 
-
-/*.linkLogin {
-  text-decoration: underline;
-  color: var(#3F51B5)
+textos1{
+ font-weight:bold !important;
 }
 
-.linkLogin:hover {
-  color: var(--blue-900)
-}*/
+.text-decorator-none{
+  text-decoration: none;
+}

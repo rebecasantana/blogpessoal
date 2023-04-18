@@ -1,102 +1,143 @@
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
-import React from "react";
-import { Link } from "react-router-dom";
-import "./CadastroUsuario.css";
+import React, { ChangeEvent, useEffect, useState } from 'react'
+import './CadastroUsuario.css'
+import { Box, Typography, Button, Grid, TextField } from '@mui/material'
+import { Link, useNavigate } from 'react-router-dom'
+//import { Usuario } from '../../models/Usuario'
+//import { cadastrarUsuario } from '../../service/Service'
 
 function CadastroUsuario() {
-  return (
-    <>
-      <Grid container display={"flex"} justifyContent={"center"}>
-        <Grid xs={6} paddingTop={2}>
-          <Typography
-            variant="h4"
-            gutterBottom
-            color={"textPrimary"}
-            align="center"
-          >
-            Cadastrar novo usuário
-          </Typography>
-          <Box paddingX={8}>
-            <form>
-              <TextField
-                id="nome"
-                label="Nome"
-                variant="outlined"
-                name="Nome"
-                margin="normal"
-                fullWidth
-                size="small"
-              >
-                Nome Completo
-              </TextField>
-              <TextField
-                id="usuario"
-                label="Usuário"
-                variant="outlined"
-                name="Usuario"
-                margin="normal"
-                fullWidth
-                size="small"
-              >
-                Usuário
-              </TextField>
-              <TextField
-                label="E-mail"
-                variant="outlined"
-                margin="normal"
-                fullWidth
-                size="small"
-              >
-                E-mail
-              </TextField>
-              <TextField
-                label="Confirme seu e-mail"
-                variant="outlined"
-                margin="normal"
-                fullWidth
-                size="small"
-              >
-                Confirme seu e-mail
-              </TextField>
-              <TextField
-                id="senha"
-                label="Senha"
-                variant="outlined"
-                name="Senha"
-                margin="normal"
-                fullWidth
-                size="small"
-              >
-                Senha
-              </TextField>
-              <TextField
-                label="Confirme sua senha"
-                variant="outlined"
-                margin="normal"
-                fullWidth
-                size="small"
-              >
-                Confirme sua senha
-              </TextField>
-              <Link to={"/login"}>
-                <Box paddingTop={4}>
-                  <Button
-                    style={{ backgroundColor: "#3F51B5" }}
-                    type="submit"
-                    variant="contained"
-                    fullWidth
-                  >
-                    Cadastrar
-                  </Button>
-                </Box>
-              </Link>
-            </form>
-          </Box>
-        </Grid>
-        <Grid xs={4} className="fotoCadastroUsuario"></Grid>
-      </Grid>
-    </>
-  );
+
+  const history = useNavigate()
+
+  const [usuario, setUsuario] = useState<Usuario>({
+    id: 0,
+    nome: '',
+    usuario: '',
+    foto: '',
+    senha: ''
+  })
+  
+  const [usuarioResult, setUsuarioResult] = useState<Usuario>({
+    id: 0,
+    nome: '',
+    usuario: '',
+    foto: '',
+    senha: ''
+  })
+
+  const [confirmarSenha,setConfirmarSenha] = useState<String>("")
+  
+  function confirmarSenhaHandle(event: ChangeEvent<HTMLInputElement>){
+    setConfirmarSenha(event.target.value)
 }
 
-export default CadastroUsuario;
+  function updateModel(event: ChangeEvent<HTMLInputElement>) {
+    setUsuario({
+      ...usuario,
+      [event.target.name]: event.target.value
+    })
+  }
+
+  async function onSubmit(event: ChangeEvent<HTMLFormElement>){
+    event.preventDefault()
+    if(confirmarSenha === usuario.senha) {
+      try {
+        await CadastroUsuario ('/usuarios/cadastrar', usuario, setUsuarioResult)
+        alert('Usuário cadastrado com sucesso')
+      } catch (error) {
+        alert('Por favor, verifique os campos')
+      }
+    } else {
+      alert('As senhas não coincidem')
+      setConfirmarSenha('')
+      setUsuario({
+        ...usuario,
+        senha: ''
+      })
+    }
+  }
+
+  useEffect(() => {
+    console.log('rodou')
+  }, [usuario.nome])
+
+  useEffect(() => {
+    if(usuarioResult.id !== 0) {
+      history('/login')
+    }
+  }, [usuarioResult])
+
+  function back() {
+    history('/login')
+  }
+  return (
+    <>
+    <Grid container alignItems={'center'}>
+        <Grid item xs={6} className='imagem2'></Grid>
+        <Grid item xs={6} justifyContent='center' >
+          <Box display='flex' justifyContent={'center'} >
+            <Grid item xs={8} >
+              <form onSubmit={onSubmit}>
+                <Typography variant='h3' align='center' gutterBottom fontWeight='bold'>Cadastrar</Typography>
+                <TextField
+                  variant='outlined'
+                  name='nome'
+                  value={usuario.nome}
+                  onChange={(event: ChangeEvent<HTMLInputElement>) => updateModel(event)}
+                  label='Nome completo'
+                  margin='normal'
+                  fullWidth />
+                <TextField
+                  variant='outlined'
+                  name='usuario'
+                  value={usuario.usuario}
+                  onChange={(event: ChangeEvent<HTMLInputElement>) => updateModel(event)}
+                  label='Usuário (endereço de e-mail)'
+                  margin='normal'
+                  fullWidth />
+                <TextField
+                  variant='outlined'
+                  name='foto'
+                  value={usuario.foto}
+                  onChange={(event: ChangeEvent<HTMLInputElement>) => updateModel(event)}
+                  label='Foto (URL)'
+                  margin='normal'
+                  fullWidth />
+                <TextField
+                  type='password'
+                  name='senha'
+                  value={usuario.senha}
+                  onChange={(event: ChangeEvent<HTMLInputElement>) => updateModel(event)}
+                  variant='outlined'
+                  label='Senha'
+                  margin='normal'
+                  fullWidth />
+                <TextField
+                  type='password'
+                  name='confirmarSenha'
+                  value={confirmarSenha}
+                  onChange={(event: ChangeEvent<HTMLInputElement>) => confirmarSenhaHandle(event)}
+                  variant='outlined'
+                  label='Confirmar Senha'
+                  margin='normal'
+                  fullWidth />
+                <Box marginY={2} display={'flex'} justifyContent={'space-around'} gap={4}>
+
+                      <Button onClick={back} size='large' variant='contained' color='error' fullWidth>
+                          Cancelar
+                      </Button>
+                    <Button type='submit' size='large' variant='contained' fullWidth>Cadastrar</Button>
+                  
+                </Box>
+            </form>
+            
+            </Grid>
+          </Box>
+        </Grid>
+        
+      </Grid>
+    </>
+  )
+}
+
+export default CadastroUsuario

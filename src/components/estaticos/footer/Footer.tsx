@@ -4,6 +4,7 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import { Typography, Grid } from "@material-ui/core";
 import { Box } from "@mui/material";
+import "./Footer.css";
 
 function Footer() {
   return (
@@ -15,7 +16,7 @@ function Footer() {
         alignItems="center"
       >
         <Grid alignItems="center" item xs={12}>
-          <Box style={{ backgroundColor: "#3F51B5", height: "100px" }}>
+          <Box className="box1">
             <Box
               paddingTop={1}
               display="flex"
@@ -26,8 +27,10 @@ function Footer() {
                 variant="h5"
                 align="center"
                 gutterBottom
-                style={{ color: "white" }}
-              > Siga-nos nas redes sociais{" "}
+                className="textos"
+              >
+                {" "}
+                Siga-nos nas redes sociais{" "}
               </Typography>
             </Box>
             <Box display="flex" alignItems="center" justifyContent="center">
@@ -35,31 +38,41 @@ function Footer() {
                 href="https://www.facebook.com/profile.php?id=100091799351090"
                 target="_blank"
               >
-                <FacebookIcon style={{ fontSize: 30, color: "white" }} />
+                <FacebookIcon className="redes" />
               </a>
               <a href="https://www.instagram.com/cursoemfeed/" target="_blank">
-                <InstagramIcon style={{ fontSize: 30, color: "white" }} />
+                <InstagramIcon className="redes" />
               </a>
               <a
                 href="https://www.linkedin.com/in/rebecasantana/"
                 target="_blank"
               >
-                <LinkedInIcon style={{ fontSize: 30, color: "white" }} />
+                <LinkedInIcon className="redes" />
               </a>
             </Box>
           </Box>
-          <Box style={{ backgroundColor: "#3F51B5", height: "35px" }}>
+          <Box className="box2">
             <Box paddingTop={1}>
               <Typography
                 variant="subtitle2"
                 align="center"
                 gutterBottom
-                style={{ color: "white" }}
+                className="textos"
               >
                 © 2023 Copyright:
               </Typography>
             </Box>
             <Box>
+              <a target="_blank" href="https://brasil.generation.org">
+                <Typography
+                  variant="subtitle2"
+                  gutterBottom
+                  className="textos"
+                  align="center"
+                >
+                  brasil.generation.org
+                </Typography>
+              </a>
             </Box>
           </Box>
         </Grid>

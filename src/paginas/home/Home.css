@@ -1,6 +1,26 @@
-.fotoHome {
+/*.fotoHome {
     width: max(100px, 100%);
     margin: 0 auto;
     display: block;
     transform: rotateY(180deg);
+  }*/
+
+  .caixa{
+    background-color: #EBF2F2;
   }
+ 
+
+ .titulo{
+  color: #3F51B5 !important;
+  font-Weight: bold;
+ } 
+
+ .botao{
+    border-color: #3F51B5 !important;
+    background-color: #3F51B5;
+    color: #3F51B5 !important;
+ }
+
+ .postagens{
+  background-color: white;
+ }
