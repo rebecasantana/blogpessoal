@@ -2,9 +2,26 @@ import React from "react";
 import { Typography, Grid, Button } from "@material-ui/core";
 import { Box } from "@mui/material";
 import "./Home.css";
-import TabPostagem from '../../components/postagens/tabpostagem/TabPostagem';
+import TabPostagem from "../../components/postagens/tabpostagem/TabPostagem";
+import ModalPostagem from "../../components/postagens/modalPostagens/ModalPostagem";
+import { useNavigate } from 'react-router-dom';
+import { TokenState } from '../../store/tokens/tokensReducer';
 
 function Home() {
+  const history = useNavigate();
+    
+  const token = useSelector<TokenState, TokenState['token']>(
+      (state) => state.token
+    )
+  
+  useEffect(() => {
+    if (token == "") {
+        alert("Você precisa estar logado")
+        history("/login")
+
+    }
+   }, [token])
+   
   return (
     <>
       <Grid
@@ -39,7 +56,9 @@ function Home() {
             </Typography>
           </Box>
           <Box display="flex" justifyContent="center">
-            <Box marginRight={1}></Box>
+            <Box marginRight={1}>
+              <ModalPostagem />
+            </Box>
             <Button variant="outlined" className="botao">
               Ver Postagens
             </Button>
@@ -54,10 +73,14 @@ function Home() {
           />
         </Grid>
         <Grid xs={12} className="postagens"></Grid>
-        <TabPostagem/>
+        <TabPostagem />
       </Grid>
     </>
   );
 }
 
 export default Home;
+function useSelector<T, U>(arg0: (state: any) => any) {
+  throw new Error('Function not implemented.');
+}
+
