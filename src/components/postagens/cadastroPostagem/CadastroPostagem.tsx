@@ -12,20 +12,25 @@ import {
 } from "@material-ui/core";
 import "./CadastroPostagem.css";
 import { useNavigate, useParams } from "react-router-dom";
-import { Tema } from "../../../models/Tema";
-import { Grid } from "@material-ui/core";
+import {Tema} from "../../../models/Tema";
 import Postagem from "../../../models/Postagem";
-import { busca, buscaId, getById, post, put } from "../../../services/Service";
-import useLocalStorage from 'react-use-localstorage';
+import { busca, buscaId, post, put } from "../../../services/service";
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../../store/tokens/tokensReducer';
 
 
-function CadastroPost() {
+function CadastroPostagem() {
     
     const history  = useNavigate();
     const { id } = useParams<{ id: string }>();
     const [temas, setTemas] = useState<Tema[]>([])
-    const [token, setToken] = useLocalStorage('token');
-
+    const userId = useSelector<TokenState, TokenState['id']>(
+        (state) => state.id
+      )
+      const token = useSelector<TokenState, TokenState['token']>(
+        (state) => state.token
+      )
+      
     useEffect(() => {
         if (token == "") {
             alert("Você precisa estar logado")
@@ -44,7 +49,7 @@ function CadastroPost() {
         titulo: '',
         texto: '',
         tema: null
-    })
+    });
  
     useEffect(() => { 
         setPostagem({
@@ -54,13 +59,13 @@ function CadastroPost() {
     }, [tema])
 
     useEffect(() => {
-        getTemas()
+        buscaTemas()
         if (id !== undefined) {
             findByIdPostagem(id)
         }
     }, [id])
 
-    async function getTemas() {
+    async function buscaTemas() {
         await busca("/tema", setTemas, {
             headers: {
                 'Authorization': token
@@ -123,7 +128,7 @@ function CadastroPost() {
             <Select
               variant="standard"
               onChange={(event) =>
-                getId(`/temas/${event.target.value}`, setTema, {
+                buscaId(`/temas/${event.target.value}`, setTema, {
                   headers: { Authorization: token },
                 })
               }
@@ -142,4 +147,4 @@ function CadastroPost() {
   );
 }
 
-export default CadastroPost;
+export default CadastroPostagem;

@@ -9,20 +9,23 @@ import {
 } from "@material-ui/core";
 import { Box } from "@mui/material";
 import "./ListaPostagem.css";
-import useLocalStorage from "react-use-localstorage";
 import { useNavigate } from "react-router-dom";
 import Postagem from "../../../models/Postagem";
 import { busca } from "../../../services/service";
+import { useSelector } from "react-redux";
+import { TokenState } from "../../../store/tokens/tokensReducer";
 
 function ListaPostagem() {
   const [posts, setPosts] = useState<Postagem[]>([]);
-  const [token, setToken] = useLocalStorage("token");
   const history = useNavigate();
+  const token = useSelector<TokenState, TokenState["token"]>(
+    (state) => state.token
+  );
 
   useEffect(() => {
     if (token == "") {
       alert("Você precisa estar logado");
-      navigate("/login");
+      history("/login");
     }
   }, [token]);
 

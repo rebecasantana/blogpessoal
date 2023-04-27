@@ -1,5 +1,4 @@
-      
-    interface Tema{
+ interface Tema{
      id:number
     descricao: string;    
 }

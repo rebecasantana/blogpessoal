@@ -4,12 +4,16 @@ import { Box, Typography, Button, Grid, TextField } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import UsuarioLogin from "../../models/UsuarioLogin";
 import { login } from "../../services/service";
-import useLocalStorage from "react-use-localstorage";
+import { useDispatch } from "react-redux";
+import { addToken } from "../../store/tokens/action";
 
 function Login() {
   const history = useNavigate();
-  const [token, setToken] = useLocalStorage("token");
 
+  const dispatch = useDispatch();
+
+  const [token, setToken] = useState(" ");
+  
   const [userLogin, setUserLogin] = useState<UsuarioLogin>({
     id: 0,
     nome: "",
@@ -25,6 +29,12 @@ function Login() {
       [event.target.name]: event.target.value,
     });
   }
+  useEffect(() => {
+    if (token !== "") {
+      dispatch(addToken(token));
+      history("/home");
+    }
+  }, [token]);
 
   async function onSubmit(event: ChangeEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -36,12 +46,6 @@ function Login() {
       alert("Usuário ou senha inválidos");
     }
   }
-
-  useEffect(() => {
-    if (token !== "") {
-      history("/home");
-    }
-  }, [token]);
 
   return (
     <>

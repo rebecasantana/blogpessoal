@@ -1,14 +1,21 @@
 import React from "react";
-import InstagramIcon from "@material-ui/icons/Instagram";
-import FacebookIcon from "@material-ui/icons/Facebook";
-import LinkedInIcon from "@material-ui/icons/LinkedIn";
-import { Typography, Grid } from "@material-ui/core";
-import { Box } from "@mui/material";
 import "./Footer.css";
+import { Grid } from "@material-ui/core";
+import Box from "@mui/material/Box";
+import { Typography } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { TokenState } from "../../../store/tokens/tokensReducer";
 
 function Footer() {
-  return (
-    <>
+  const dispatch = useDispatch();
+  const token = useSelector<TokenState, TokenState["token"]>(
+    (state) => state.token
+  );
+
+  var footerComponent;
+
+  if (token != "") {
+    footerComponent = (
       <Grid
         container
         direction="row"
@@ -77,8 +84,9 @@ function Footer() {
           </Box>
         </Grid>
       </Grid>
-    </>
-  );
+    );
+  }
+  return <>{footerComponent}</>;
 }
 
 export default Footer;
