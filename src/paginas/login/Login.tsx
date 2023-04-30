@@ -1,20 +1,30 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import "./Login.css";
-import { Box, Typography, Button, Grid, TextField } from "@mui/material";
+import { Grid, Box, Typography, TextField, Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import UsuarioLogin from "../../models/UsuarioLogin";
-import { login } from "../../services/service";
+import "./Login.css";
 import { useDispatch } from "react-redux";
-import { addToken } from "../../store/tokens/action";
+import { toast } from "react-toastify";
+import { addId, addToken } from "../../store/tokens/action";
+import { login } from '../../service/service';
 
 function Login() {
   const history = useNavigate();
 
   const dispatch = useDispatch();
 
-  const [token, setToken] = useState(" ");
-  
+  const [token, setToken] = useState("");
+
   const [userLogin, setUserLogin] = useState<UsuarioLogin>({
+    id: 0,
+    nome: "",
+    usuario: "",
+    foto: "",
+    senha: "",
+    token: "",
+  });
+
+  const [respUserLogin, setRespUserLogin] = useState<UsuarioLogin>({
     id: 0,
     nome: "",
     usuario: "",
@@ -29,6 +39,37 @@ function Login() {
       [event.target.name]: event.target.value,
     });
   }
+
+  async function onSubmit(event: ChangeEvent<HTMLFormElement>) {
+    event.preventDefault();
+    try {
+      await login("/usuarios/logar", userLogin, setRespUserLogin);
+      toast.success("Usuario logado com sucesso", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } catch (error) {
+      console.log(error);
+
+      toast.error("Usuário ou senha inválidos!", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+  }
+
   useEffect(() => {
     if (token !== "") {
       dispatch(addToken(token));
@@ -36,89 +77,91 @@ function Login() {
     }
   }, [token]);
 
-  async function onSubmit(event: ChangeEvent<HTMLFormElement>) {
-    event.preventDefault();
-    try {
-      await login("/usuarios/logar", userLogin, setToken);
-      alert("Usuario logado com sucesso");
-    } catch (error) {
-      console.log(error);
-      alert("Usuário ou senha inválidos");
+  useEffect(() => {
+    if (respUserLogin.token !== "") {
+      dispatch(addToken(respUserLogin.token));
+      dispatch(addId(respUserLogin.id.toString()));
+      history("/home");
     }
-  }
+  }, [respUserLogin.token]);
 
   return (
-    <>
-      <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Grid item xs={6} alignItems="center">
-          <Box paddingX={10}>
-            <form onSubmit={onSubmit}>
-              <Typography
-                variant="h4"
-                gutterBottom
-                color={"textPrimary"}
-                align="center"
+    <Grid
+      container
+      direction="row"
+      justifyContent={"center"}
+      alignItems={"center"}
+      className="fundologin"
+    >
+      <Grid alignItems={"center"} xs={6}>
+        <Box paddingX={20}>
+          <form onSubmit={onSubmit}>
+            <Typography
+              variant="h3"
+              gutterBottom
+              component="h3"
+              align="center"
+              style={{ fontWeight: "bold", color: "#0f5ad1" }}
+            >
+              Entrar
+            </Typography>
+            <TextField
+              variant="outlined"
+              name="usuario"
+              value={userLogin.usuario}
+              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                updateModel(event)
+              }
+              label="Usuário"
+              margin="normal"
+              fullWidth
+            ></TextField>
+            <TextField
+              type="password"
+              name="senha"
+              error={userLogin.senha.length < 8 && userLogin.senha.length > 0}
+              helperText={
+                userLogin.senha.length < 8 && userLogin.senha.length > 0
+                  ? "Senha incorreta"
+                  : ""
+              }
+              value={userLogin.senha}
+              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                updateModel(event)
+              }
+              variant="outlined"
+              label="Senha"
+              margin="normal"
+              fullWidth
+            ></TextField>
+            <Box marginTop={2} textAlign={"center"}>
+              <Button
+                className="buttonlogin"
+                type="submit"
+                variant="contained"
+                fullWidth
               >
-                Entrar
-              </Typography>
-              <TextField
-                value={userLogin.usuario}
-                onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                  updateModel(event)
-                }
-                id="usuario"
-                label="Usuário"
-                variant="outlined"
-                name="usuario"
-                margin="normal"
-                fullWidth
-              />
-              <TextField
-                value={userLogin.senha}
-                onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                  updateModel(event)
-                }
-                id="senha"
-                label="Senha"
-                variant="outlined"
-                name="senha"
-                margin="normal"
-                type="password"
-                fullWidth
-              />
-              <Box marginTop={2} textAlign={"center"}>
-                <Button type="submit" variant="contained" color="primary">
-                  Logar
-                </Button>
-              </Box>
-            </form>
-            <Box display={"flex"} justifyContent={"center"} marginTop={2}>
-              <Box marginRight={1}>
-                <Typography variant="subtitle2" gutterBottom align="center">
-                  Não tem uma conta?
-                </Typography>
-              </Box>
-              <Link to={"/cadastroUsuario"}>
-                <Typography
-                  variant="subtitle2"
-                  gutterBottom
-                  align="center"
-                  className="textos1"
+                Logar
+              </Button>
+            </Box>
+          </form>
+          <Box display="flex" justifyContent="center" marginTop={2}>
+            <Box marginRight={1}>
+              <Typography marginTop={2} align="center" variant="body1">
+                Ainda não tem uma conta?{" "}
+                <Link
+                  to="/cadastroUsuario"
+                  style={{ color: "#3F51B5", font: "bold" }}
                 >
                   Cadastre-se aqui
-                </Typography>
-              </Link>
+                </Link>
+              </Typography>
             </Box>
           </Box>
-        </Grid>
-        <Grid xs={6} className="imagemLogin"></Grid>
+        </Box>
       </Grid>
-    </>
+      <Grid xs={6} className="imagemlogin"></Grid>
+    </Grid>
   );
 }
 

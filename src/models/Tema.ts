@@ -1,7 +1,4 @@
- interface Tema{
-     id:number
-    descricao: string;    
+export interface Temas {
+  id: number;
+  descricao: string
 }
-
-export default Tema;
-

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Card,
   CardActions,
@@ -8,29 +8,29 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Box } from "@mui/material";
-import "./ListaPostagem.css";
-import { useNavigate } from "react-router-dom";
 import Postagem from "../../../models/Postagem";
-import { busca } from "../../../services/service";
+import { getAll } from "../../../service/service";
+import "./ListaPostagem.css";
 import { useSelector } from "react-redux";
-import { TokenState } from "../../../store/tokens/tokensReducer";
+import { TokenState } from "../../../store/tokens/TokensReducer";
 
 function ListaPostagem() {
-  const [posts, setPosts] = useState<Postagem[]>([]);
-  const history = useNavigate();
+  const [postagens, setPostagens] = useState<Postagem[]>([]);
+
   const token = useSelector<TokenState, TokenState["token"]>(
     (state) => state.token
   );
 
+  const history = useNavigate();
+
   useEffect(() => {
-    if (token == "") {
-      alert("Você precisa estar logado");
+    if (token === "") {
       history("/login");
     }
-  }, [token]);
+  }, []);
 
-  async function getPost() {
-    await busca("/postagens", setPosts, {
+  async function getAllPostagens() {
+    await getAll("/postagens", setPostagens, {
       headers: {
         Authorization: token,
       },
@@ -38,12 +38,12 @@ function ListaPostagem() {
   }
 
   useEffect(() => {
-    getPost();
-  }, [posts.length]);
+    getAllPostagens();
+  }, [postagens.length]);
 
   return (
-    <>
-      {posts.map((post) => (
+    <div className="listaPost">
+      {postagens.map((postagem) => (
         <Box m={2}>
           <Card variant="outlined">
             <CardContent>
@@ -51,19 +51,29 @@ function ListaPostagem() {
                 Postagens
               </Typography>
               <Typography variant="h5" component="h2">
-                Título
+                {postagem.titulo}
               </Typography>
               <Typography variant="body2" component="p">
-                Texto da Postagem
+                {postagem.texto}
               </Typography>
               <Typography variant="body2" component="p">
-                Tema
+                {postagem.tema?.id}
+              </Typography>
+              <Typography variant="body2" component="p">
+                Data:{" "}
+                {Intl.DateTimeFormat("pt-BR", {
+                  dateStyle: "full",
+                  timeStyle: "medium",
+                }).format(new Date(postagem.data))}
+              </Typography>
+              <Typography variant="body2" component="p">
+                Postado por: {postagem.usuario?.nome}
               </Typography>
             </CardContent>
             <CardActions>
               <Box display="flex" justifyContent="center" mb={1.5}>
                 <Link
-                  to={"/formularioPostagem/${post.id"}
+                  to={`/formularioPostagem/${postagem.id}`}
                   className="text-decorator-none"
                 >
                   <Box mx={1}>
@@ -78,7 +88,7 @@ function ListaPostagem() {
                   </Box>
                 </Link>
                 <Link
-                  to={"/formularioPostagem/${post.id"}
+                  to={`/deletarPostagem/${postagem.id}`}
                   className="text-decorator-none"
                 >
                   <Box mx={1}>
@@ -92,7 +102,7 @@ function ListaPostagem() {
           </Card>
         </Box>
       ))}
-    </>
+    </div>
   );
 }
 

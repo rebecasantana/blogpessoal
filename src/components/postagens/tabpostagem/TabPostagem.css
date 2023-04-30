@@ -1,3 +1,9 @@
 .titulo{
     font-weight: bold;
- }
+    color: rgb(12, 12, 212) !important;
+}
+
+.subtitulo {
+   color: midnightblue !important;
+}
+ 

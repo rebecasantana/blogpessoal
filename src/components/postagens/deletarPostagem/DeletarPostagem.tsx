@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Typography,
   Button,
@@ -6,13 +6,13 @@ import {
   CardActions,
   CardContent,
 } from "@material-ui/core";
-import { useNavigate, useParams } from "react-router-dom";
-import Postagem from "../../../models/Postagem";
-import { buscaId, deleteId } from "../../../services/service";
 import { Box } from "@mui/material";
 import "./DeletarPostagem.css";
+import Postagem from "../../../models/Postagem";
+import { getById, deleteId } from "../../../service/Service";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { TokenState } from "../../../store/tokens/tokensReducer";
+import { toast } from "react-toastify";
 
 function DeletarPostagem() {
   const history = useNavigate();
@@ -21,11 +21,20 @@ function DeletarPostagem() {
     (state) => state.token
   );
 
-  const [post, setPosts] = useState<Postagem>();
+  const [postagens, setPostagens] = useState<Postagem>();
 
   useEffect(() => {
     if (token == "") {
-      alert("Você precisa estar logado");
+      toast.error("Você precisa estar logado!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       history("/login");
     }
   }, [token]);
@@ -37,7 +46,7 @@ function DeletarPostagem() {
   }, [id]);
 
   async function findById(id: string) {
-    buscaId(`/postagens/${id}`, setPosts, {
+    getById(`/postagens/${id}`, setPostagens, {
       headers: {
         Authorization: token,
       },
@@ -51,7 +60,16 @@ function DeletarPostagem() {
         Authorization: token,
       },
     });
-    alert("Postagem deletada com sucesso");
+    toast.success("Postagem deletada com sucesso", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   }
 
   function nao() {
@@ -66,7 +84,7 @@ function DeletarPostagem() {
               <Typography color="textSecondary" gutterBottom>
                 Deseja deletar a Postagem:
               </Typography>
-              <Typography color="textSecondary">{post?.titulo}</Typography>
+              <Typography color="textSecondary">{postagens?.titulo}</Typography>
             </Box>
           </CardContent>
           <CardActions>
@@ -99,5 +117,4 @@ function DeletarPostagem() {
     </>
   );
 }
-
 export default DeletarPostagem;

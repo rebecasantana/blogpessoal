@@ -3,6 +3,12 @@
 }
 
 .btnModal{
-    border-color: white !important;
-    background-color: white !important;
+    border-color: #8e9bce  !important;
+    border-radius: 5px !important;
+    transform: translate(-10%, -10%);
+}
+.modal {
+    border-color: #8e9bce  !important;
+    border-radius: 5px !important;
+    transform: translate(-10%, -10%);
 }

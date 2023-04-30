@@ -1,8 +1,14 @@
 .cursor{
    cursor: pointer;
-   color: white;
+   color: white !important;
 }
 
 .text-decoration-none{
   text-decoration: none;   
 }
+
+.logout-cursor{
+  color: white !important;
+
+}
+

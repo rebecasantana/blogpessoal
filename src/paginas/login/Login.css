@@ -5,11 +5,9 @@
   min-height: 100vh;
   background-position: center;
 }
-
-textos1{
- font-weight:bold !important;
+.buttonlogin {
+  background-color: #3F51B5 !important;
 }
-
 .text-decorator-none{
   text-decoration: none;
 }

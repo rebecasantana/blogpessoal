@@ -5,9 +5,10 @@ import "./Home.css";
 import TabPostagem from "../../components/postagens/tabpostagem/TabPostagem";
 import ModalPostagem from "../../components/postagens/modalPostagens/ModalPostagem";
 import { useNavigate } from "react-router-dom";
-import { TokenState } from "../../store/tokens/tokensReducer";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { TokenState } from "../../store/tokens/TokensReducer";
 
 function Home() {
   const history = useNavigate();
@@ -17,7 +18,16 @@ function Home() {
 
   useEffect(() => {
     if (token == "") {
-      alert("Você precisa estar logado");
+      toast.error("VocÊ precisa estar logado!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       history("/login");
     }
   }, [token]);
@@ -59,7 +69,7 @@ function Home() {
             <Box marginRight={1}>
               <ModalPostagem />
             </Box>
-            <Link to="/posts" className="text-decorator-none">
+            <Link to="/postagens" className="text-decorator-none">
               <Button variant="outlined" className="botao">
                 Ver Postagens
               </Button>

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Card,
   CardActions,
@@ -8,30 +8,24 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Box } from "@mui/material";
+import { getAll } from "../../../service/Service";
 import "./ListaTema.css";
-import Tema from "../../../models/Tema";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from 'react-redux';
-import { TokenState } from '../../../store/tokens/tokensReducer';
-import { busca } from '../../../services/service';
+import { useSelector } from "react-redux";
+import { TokenState } from "../../../store/tokens/TokensReducer";
+import { Tema } from "../../../models/Tema";
 
 function ListaTema() {
   const [temas, setTemas] = useState<Tema[]>([]);
+
   const token = useSelector<TokenState, TokenState["token"]>(
     (state) => state.token
-  )
+  );
+
   const history = useNavigate();
 
-  useEffect(() => {
-    if (token === "") {
-      alert("Você precisa estar logado");
-      history("/login");
-    }
-  }, [token]);
-
   async function getAllTemas() {
-    await busca("/temas", setTemas, {
-      Headers: {
+    await getAll("/temas", setTemas, {
+      headers: {
         Authorization: token,
       },
     });
@@ -41,6 +35,11 @@ function ListaTema() {
     getAllTemas();
   }, []);
 
+  useEffect(() => {
+    if (token === "") {
+      history("/login");
+    }
+  }, []);
 
   return (
     <>
@@ -58,7 +57,7 @@ function ListaTema() {
             <CardActions>
               <Box display="flex" justifyContent="center" mb={1.5}>
                 <Link
-                  to={"/formularioTema/${tema.id}"}
+                  to={`/formularioTema/${tema.id}`}
                   className="text-decorator-none"
                 >
                   <Box mx={1}>
@@ -73,7 +72,7 @@ function ListaTema() {
                   </Box>
                 </Link>
                 <Link
-                  to={"/deletarTema/${tema.id}"}
+                  to={`/deletarTema/${tema.id}`}
                   className="text-decorator-none"
                 >
                   <Box mx={1}>

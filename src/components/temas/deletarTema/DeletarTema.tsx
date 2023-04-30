@@ -9,10 +9,11 @@ import {
 import { Box } from "@mui/material";
 import "./DeletarTema.css";
 import { useNavigate, useParams } from "react-router-dom";
-import { buscaId, deleteId } from "../../../services/service";
-import Tema from "../../../models/Tema";
-import { TokenState } from "../../../store/tokens/tokensReducer";
+import { getById, deleteId } from "../../../service/service";
+import { Tema } from "../../../models/Tema";
 import { useSelector } from "react-redux";
+import { TokenState } from "../../../store/tokens/TokensReducer";
+import { toast } from "react-toastify";
 
 function DeletarTema() {
   const history = useNavigate();
@@ -27,7 +28,16 @@ function DeletarTema() {
 
   useEffect(() => {
     if (token == "") {
-      alert("Você precisa estar logado");
+      toast.error("Você precisa estar logado!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       history("/login");
     }
   }, [token]);
@@ -39,7 +49,7 @@ function DeletarTema() {
   }, [id]);
 
   async function findById(id: string) {
-    buscaId(`/tema/${id}`, setTema, {
+    getById(`/tema/${id}`, setTema, {
       headers: {
         Authorization: token,
       },
@@ -47,18 +57,27 @@ function DeletarTema() {
   }
 
   function sim() {
-    history('/temas')
-          deleteId(`/temas/${id}`, {
-            headers: {
-              'Authorization': token
-            }
-          });
-          alert('Tema deletado com sucesso');
-        }
-      
-        function nao() {
-          history('/temas')
-        }
+    history("/temas");
+    deleteId(`/temas/${id}`, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    toast.success("Tema deletado com sucesso", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  }
+
+  function nao() {
+    history("/temas");
+  }
 
   return (
     <>

@@ -1,14 +1,15 @@
-export type Action ={type:"ADD_TOKEN"; playload:string}
+export type Action = {type: 'ADD_TOKEN' | "ADD_ID"; payload: string}
 
 export const addToken = (token: string): Action => ({
-    type: "ADD_TOKEN",
-    playload: token
+    type: 'ADD_TOKEN',
+    payload: token
+})
+
+export const addId = (id: string): Action => ({
+    type: 'ADD_ID',
+    payload: id
 })
 
 
 
 
-
-
-
-//type é como se fosse uma modelagem, interface
