@@ -1,13 +1,17 @@
-.imagemLogin {
+.imagemlogin{
   background-image: url('https://ik.imagekit.io/zc68f3m83/English_teacher-amico.png?updatedAt=1681429614331');
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   min-height: 100vh;
   background-position: center;
+  opacity : 0.5;
 }
 .buttonlogin {
   background-color: #3F51B5 !important;
 }
 .text-decorator-none{
   text-decoration: none;
+}
+.fundologin{
+  align-items: row;
 }

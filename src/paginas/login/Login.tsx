@@ -6,7 +6,7 @@ import "./Login.css";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { addId, addToken } from "../../store/tokens/action";
-import { login } from '../../service/service';
+import { login } from "../../service/service";
 
 function Login() {
   const history = useNavigate();
@@ -94,16 +94,27 @@ function Login() {
       className="fundologin"
     >
       <Grid alignItems={"center"} xs={6}>
-        <Box paddingX={20}>
+        <Box paddingX={15}>
           <form onSubmit={onSubmit}>
             <Typography
-              variant="h3"
+              variant="h4"
               gutterBottom
-              component="h3"
+              component="h6"
               align="center"
               style={{ fontWeight: "bold", color: "#0f5ad1" }}
             >
+              {" "}
               Entrar
+            </Typography>
+            <Typography
+              variant="h6"
+              gutterBottom
+              component="h6"
+              align="center"
+              style={{ fontWeight: "regular", color: "#000000" }}
+            >
+              {" "}
+              Acesse sua conta agora mesmo.
             </Typography>
             <TextField
               variant="outlined"
@@ -134,7 +145,7 @@ function Login() {
               margin="normal"
               fullWidth
             ></TextField>
-            <Box marginTop={2} textAlign={"center"}>
+            <Box marginTop={1} textAlign={"center"}>
               <Button
                 className="buttonlogin"
                 type="submit"
@@ -146,8 +157,8 @@ function Login() {
             </Box>
           </form>
           <Box display="flex" justifyContent="center" marginTop={2}>
-            <Box marginRight={1}>
-              <Typography marginTop={2} align="center" variant="body1">
+            <Box marginRight={2}>
+              <Typography marginTop={1} align="center" variant="body1">
                 Ainda não tem uma conta?{" "}
                 <Link
                   to="/cadastroUsuario"
@@ -160,7 +171,7 @@ function Login() {
           </Box>
         </Box>
       </Grid>
-      <Grid xs={6} className="imagemlogin"></Grid>
+      <Grid xs={5} className="imagemlogin"></Grid>
     </Grid>
   );
 }
