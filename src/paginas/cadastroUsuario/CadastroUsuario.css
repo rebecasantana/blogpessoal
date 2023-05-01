@@ -1,20 +1,23 @@
-.imagem2{
-  background-image: url(https://ik.imagekit.io/zc68f3m83/livro-de-ingles-descansando-na-mesa-do-espaco-de-trabalho.jpg?updatedAt=1682650579789);
+.imagemcadastro{
+ background-image: url(https://ik.imagekit.io/zc68f3m83/livro-de-ingles-descansando-na-mesa-do-espaco-de-trabalho.jpg?updatedAt=1682650579789);
   background-size: cover;
   background-repeat: no-repeat;
+  min-height: 100vh;
   background-position: center;
-  min-height:66vh;
+  opacity : 0.5;
+  position: relative;
 }
 
 .textos2{
   font-weight: bold !important;
 }
 
-.button {
-  background-color: purple !important;
+.buttonCancelar {
+  background-color: #f81492 !important;
+  gap: 2px;
+}
+.buttonCadastrar{
+  background-color: #3F51B5 !important;
   gap: 2px;
 }
 
-.fundocadastro {
-  background-color: #c5cae9 !important;
-}

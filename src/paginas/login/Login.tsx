@@ -109,7 +109,7 @@ function Login() {
             <Typography
               variant="h6"
               gutterBottom
-              component="h6"
+              component="h3"
               align="center"
               style={{ fontWeight: "regular", color: "#000000" }}
             >

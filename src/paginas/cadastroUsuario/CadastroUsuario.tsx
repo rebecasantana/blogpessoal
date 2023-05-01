@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 import Usuario from "../../models/Usuario";
 import { cadastrarUsuario } from "../../service/Service";
 
-
 function CadastroUsuario() {
   const history = useNavigate();
 
@@ -103,18 +102,26 @@ function CadastroUsuario() {
       alignItems={"center"}
       className="fundocadastro"
     >
-      <Grid item xs={6} className="imagem-cadastro"></Grid>
-      <Grid item xs={6} alignItems={"center"}>
+      <Grid item xs={5} alignItems={"center"}>
         <Box paddingX={10}>
           <form onSubmit={onSubmit}>
             <Typography
-              variant="h3"
+              variant="h4"
               gutterBottom
-              component="h3"
+              component="h6"
               align="center"
               style={{ fontWeight: "bold", color: "#283593" }}
             >
               Cadastrar
+            </Typography>
+            <Typography
+              variant="h6"
+              gutterBottom
+              component="h6"
+              align="center"
+              style={{ fontWeight: "regular", color: "#000000" }}
+            >
+              Preencha os campos abaixo.
             </Typography>
             <TextField
               variant="outlined"
@@ -173,22 +180,27 @@ function CadastroUsuario() {
               margin="normal"
               fullWidth
             ></TextField>
-            <Box marginTop={2} textAlign={"center"}>
+            <Box marginTop={3} textAlign={"center"}>
               <Button
                 onClick={back}
                 variant="contained"
                 style={{ marginRight: "10px" }}
-                className="button"
+                className="buttonCancelar"
               >
                 Cancelar
               </Button>
-              <Button type="submit" variant="contained" className="button">
+              <Button
+                type="submit"
+                variant="contained"
+                className="buttonCadastrar"
+              >
                 Cadastar
               </Button>
             </Box>
           </form>
         </Box>
       </Grid>
+      <Grid xs={7} className="imagemcadastro"></Grid>
     </Grid>
   );
 }
