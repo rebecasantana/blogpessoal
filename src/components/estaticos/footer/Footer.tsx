@@ -16,7 +16,7 @@ function Footer() {
 
   let footerComponent;
 
-  if (token !== "") {
+  if (token != "") {
     footerComponent = (
       <Grid
         container
@@ -25,57 +25,16 @@ function Footer() {
         alignItems="center"
       >
         <Grid alignItems="center" item xs={12}>
-          <Box>
-            <Box
-              paddingTop={1}
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-              className='box'
-            >
-              <Typography
-                variant="h5"
-                align="center"
-                gutterBottom
-                className="descricao"
-              >
-                {" "}
-                Me acompanhe no Linkedin
-              </Typography>
-            </Box>
-            <Box display="flex" alignItems="center" justifyContent="center">
-              <a href="http://www.linkedin.com" target="blank">
-                <LinkedInIcon className="icones" />
-              </a>
-            </Box>
-          </Box>
-          <Box className="boxPrincipal">
+          <Box style={{ backgroundColor: "#3F51B5", height: "50px" }}>
             <Box paddingTop={1}>
               <Typography
                 variant="subtitle2"
                 align="center"
                 gutterBottom
-                className="descricao"
+                style={{ color: "white" }}
               >
-                {" "}
-                {/*2023 Copyright*/}
+                Desenvolvido por Rebeca © 2023 Copyright:
               </Typography>
-            </Box>
-            <Box>
-              <a
-                target="blank"
-                href="https://www.linkedin.com/in/rebecasantana/"
-              >
-                <Typography
-                  variant="subtitle2"
-                  gutterBottom
-                  align="center"
-                  className="textoFooter"
-                >
-                  {" "}
-                 Desenvolvido por Rebeca Silva{" "}
-                </Typography>
-              </a>
             </Box>
           </Box>
         </Grid>

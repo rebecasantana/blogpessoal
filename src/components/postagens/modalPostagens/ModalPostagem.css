@@ -1,14 +1,17 @@
-.cursor{
-    cursor: pointer;
-}
-
 .btnModal{
     border-color: #8e9bce  !important;
     border-radius: 5px !important;
     transform: translate(-10%, -10%);
-}
-.modal {
-    border-color: #8e9bce  !important;
     border-radius: 5px !important;
-    transform: translate(-10%, -10%);
+    background-color: #8e9bce !important;   
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 30vw;
+    height: 100vh;
 }

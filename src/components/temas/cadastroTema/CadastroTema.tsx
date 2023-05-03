@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { TokenState } from "../../../store/tokens/TokensReducer";
 import { toast } from "react-toastify";
 import { getById, post, put } from "../../../service/service";
-import { Tema } from "../../../models/Tema";
+import  {Tema}  from "../../../models/Tema";
 
 function CadastroTema() {
   const history = useNavigate();
@@ -19,7 +19,9 @@ function CadastroTema() {
 
   const [tema, setTema] = useState<Tema>({
     id: 0,
-    descricao: "",
+    categoria: "",
+    nome: "",
+    //descricao: ''
   });
 
   useEffect(() => {
