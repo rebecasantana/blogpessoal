@@ -13,7 +13,7 @@ import { getById, deleteId } from "../../../service/service";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { TokenState } from "../../../store/tokens/TokensReducer";
+import { TokenState } from '../../../store/tokens/TokensReducer';
 
 
 function DeletarPostagem() {
