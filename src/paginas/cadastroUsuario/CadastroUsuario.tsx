@@ -42,7 +42,7 @@ function CadastroUsuario() {
     if (confirmarSenha === usuario.senha && usuario.senha.length >= 8) {
       try {
         await CadastroUsuario(
-          "/usuarios/cadastrar",
+          "/usuario/cadastrar",
           usuario,
           //usuarios,
           setUsuarioResult
