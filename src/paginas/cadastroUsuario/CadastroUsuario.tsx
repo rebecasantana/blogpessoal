@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./CadastroUsuario.css";
 import { toast } from "react-toastify";
 import Usuario  from "../../models/Usuario";
+import { cadastroUsuario } from '../../service/service';
 
 function CadastroUsuario() {
   const history = useNavigate();
@@ -41,7 +42,7 @@ function CadastroUsuario() {
     event.preventDefault();
     if (confirmarSenha === usuario.senha && usuario.senha.length >= 8) {
       try {
-        await CadastroUsuario(
+        await cadastroUsuario(
           "/usuarios/cadastrar",
           usuario,
           setUsuarioResult
