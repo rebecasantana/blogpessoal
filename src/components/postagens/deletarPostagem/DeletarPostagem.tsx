@@ -8,12 +8,12 @@ import {
 } from "@material-ui/core";
 import { Box } from "@mui/material";
 import "./DeletarPostagem.css";
-import Postagem from "../../../models/Postagem";
+import {Postagem} from "../../../models/Postagem";
 import { getById, deleteId } from "../../service/service";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { TokenState } from '../../store/tokens/TokensReducer';
+import { TokenState } from '../../../store/tokens/TokensReducer';
 
 
 function DeletarPostagem() {

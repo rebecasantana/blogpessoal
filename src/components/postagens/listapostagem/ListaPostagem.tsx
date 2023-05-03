@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Box } from "@mui/material";
-import Postagem from "../../../models/Postagem";
+import {Postagem} from "../../../models/Postagem";
 import { getAll } from "../../../service/service";
 import "./ListaPostagem.css";
 import { useSelector } from "react-redux";

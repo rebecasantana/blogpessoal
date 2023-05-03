@@ -13,7 +13,7 @@ import {
 import "./CadastroPostagem.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { Grid } from "@material-ui/core";
-import Postagem from "../../../models/Postagem";
+import {Postagem} from '../../../models/Postagem';
 import { getAll, getById, post, put } from "../../../service/service";
 import { useSelector } from "react-redux";
 import { TokenState } from "../../../store/tokens/TokensReducer";
