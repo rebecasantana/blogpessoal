@@ -13,6 +13,8 @@ import { getById, deleteId } from "../../../service/Service";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { TokenState } from "../../../store/tokens/TokensReducer";
+
 
 function DeletarPostagem() {
   const history = useNavigate();
