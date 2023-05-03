@@ -3,7 +3,7 @@ import { Grid, Box, Typography, TextField, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import "./CadastroUsuario.css";
 import { toast } from "react-toastify";
-import { Usuario } from "../../models/Usuario";
+import Usuario  from "../../models/Usuario";
 
 function CadastroUsuario() {
   const history = useNavigate();
