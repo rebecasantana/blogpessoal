@@ -43,7 +43,8 @@ function CadastroUsuario() {
       try {
         await CadastroUsuario(
           "/usuarios/cadastrar",
-          usuarios,
+          usuario,
+          //usuarios,
           setUsuarioResult
         );
         toast.success("Usuário cadastrado com sucesso", {

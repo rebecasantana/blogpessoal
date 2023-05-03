@@ -1,7 +1,7 @@
 import Tema from "./Tema"
 import Usuario from "./Usuario";
 
-interface Postagem {
+export interface Postagem {
     id: number;
     titulo: string;
     texto: string;
@@ -9,5 +9,3 @@ interface Postagem {
     tema?: Tema| null;
     usuario?: Usuario | null
 }
-
-export default Postagem;
