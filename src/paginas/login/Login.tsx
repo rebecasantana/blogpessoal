@@ -40,6 +40,21 @@ function Login() {
     });
   }
 
+  useEffect(() => {
+    if(token != ''){
+        dispatch(addToken(token))
+        history('/home')
+    }
+}, [token])
+
+useEffect(() => {
+  if(respUserLogin.token !== ''){
+      dispatch(addToken(respUserLogin.token))
+      dispatch(addId(respUserLogin.id.toString()))
+      history('/home')
+  }
+}, [respUserLogin.token])
+
   async function onSubmit(event: ChangeEvent<HTMLFormElement>) {
     event.preventDefault();
     try {
@@ -70,20 +85,20 @@ function Login() {
     }
   }
 
-  useEffect(() => {
-    if (token !== "") {
-      dispatch(addToken(token));
-      history("/home");
-    }
-  }, [token]);
+  //useEffect(() => {
+  //  if (token !== "") {
+  //    dispatch(addToken(token));
+  //    history("/home");
+  //  }
+  //}, [token]);
 
-  useEffect(() => {
-    if (respUserLogin.token !== "") {
-      dispatch(addToken(respUserLogin.token));
-      dispatch(addId(respUserLogin.id.toString()));
-      history("/home");
-    }
-  }, [respUserLogin.token]);
+  //useEffect(() => {
+  //  if (respUserLogin.token !== "") {
+  //    dispatch(addToken(respUserLogin.token));
+  //    dispatch(addId(respUserLogin.id.toString()));
+  //    history("/home");
+  //  }
+  //}, [respUserLogin.token]);
 
   return (
     <Grid
