@@ -80,7 +80,7 @@ function Home() {
           <img
             src="https://ik.imagekit.io/zc68f3m83/English_teacher-pana__1_.png?updatedAt=1681429625289"
             alt=""
-            width="540px"
+            width="500px"
             height="500px"
           />
         </Grid>
