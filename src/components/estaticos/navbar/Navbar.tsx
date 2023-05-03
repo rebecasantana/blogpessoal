@@ -52,9 +52,7 @@ function Navbar() {
               <Box marginY={2} className="icon"></Box>
             </Link>
             <Box marginY={4} marginLeft={2}>
-              <Typography variant="h6" color="white">
-                Lingua Ingleza
-              </Typography>
+              <Typography variant="h6">Lingua Ingleza</Typography>
             </Box>
           </Box>
           <Box display="flex" gap={10}>
@@ -62,7 +60,7 @@ function Navbar() {
               <Box mx={1} style={{ cursor: "pointer" }}>
                 <Typography
                   variant="h6"
-                  color="white"
+                  //color="white"
                   className="logout-cursor"
                 >
                   Home
@@ -73,7 +71,7 @@ function Navbar() {
               <Box mx={1} style={{ cursor: "pointer" }}>
                 <Typography
                   variant="h6"
-                  color="white"
+                  //color="white"
                   className="logout-cursor"
                 >
                   Postagens
@@ -84,7 +82,7 @@ function Navbar() {
               <Box mx={1} style={{ cursor: "pointer" }}>
                 <Typography
                   variant="h6"
-                  color="white"
+                  //color="white"
                   className="logout-cursor"
                 >
                   Tema
@@ -95,7 +93,7 @@ function Navbar() {
               <Box mx={1} style={{ cursor: "pointer" }}>
                 <Typography
                   variant="h6"
-                  color="white"
+                  //color="white"
                   className="logout-cursor"
                 >
                   Cadastrar tema
@@ -110,7 +108,7 @@ function Navbar() {
             onClick={goLogout}
             paddingLeft={"5px"}
           >
-            <Typography variant="h6" color="white" className="logout-cursor">
+            <Typography variant="h6" className="logout-cursor">
               logout
             </Typography>
           </Box>

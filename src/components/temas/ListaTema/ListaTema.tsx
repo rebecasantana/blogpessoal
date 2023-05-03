@@ -8,11 +8,11 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Box } from "@mui/material";
-import { getAll } from "../../../service/Service";
 import "./ListaTema.css";
 import { useSelector } from "react-redux";
 import { TokenState } from "../../../store/tokens/TokensReducer";
 import { Tema } from "../../../models/Tema";
+import { getAll } from '../../../service/service';
 
 function ListaTema() {
   const [temas, setTemas] = useState<Tema[]>([]);

@@ -12,16 +12,15 @@ import {
 } from "@material-ui/core";
 import "./CadastroPostagem.css";
 import { useNavigate, useParams } from "react-router-dom";
-import { Tema } from "../../../models/Tema";
 import { Grid } from "@material-ui/core";
 import Postagem from "../../../models/Postagem";
 import { getAll, getById, post, put } from "../../../service/service";
-import { lightBlue } from "@material-ui/core/colors";
 import { useSelector } from "react-redux";
 import { TokenState } from "../../../store/tokens/TokensReducer";
 import { Usuario } from "../../../models/Usuario";
 import Box from "@mui/material/Box";
 import { toast } from "react-toastify";
+import {Tema} from "../../../models/Tema";
 
 function CadastroPostagem() {
   const history = useNavigate();
@@ -56,6 +55,7 @@ function CadastroPostagem() {
     id: 0,
     descricao: "",
   });
+
   const [postagem, setPostagem] = useState<Postagem>({
     id: 0,
     titulo: "",
@@ -199,7 +199,7 @@ function CadastroPostagem() {
                 labelId="demo-simple-select-helper-label"
                 id="demo-simple-select-helper"
                 onChange={(e) =>
-                  getById(`/temas/${e.target.value}`, setTema, {
+                  getById(`/temas/${e.target.value}`, setTemas, {
                     headers: {
                       Authorization: token,
                     },

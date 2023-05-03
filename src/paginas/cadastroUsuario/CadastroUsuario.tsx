@@ -1,10 +1,9 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { Grid, Box, Typography, TextField, Button } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./CadastroUsuario.css";
 import { toast } from "react-toastify";
-import Usuario from "../../models/Usuario";
-import { cadastrarUsuario } from "../../service/Service";
+import { Usuario } from "../../models/Usuario";
 
 function CadastroUsuario() {
   const history = useNavigate();
@@ -42,7 +41,11 @@ function CadastroUsuario() {
     event.preventDefault();
     if (confirmarSenha === usuario.senha && usuario.senha.length >= 8) {
       try {
-        await CadastroUsuario("/usuarios/", usuario, setUsuarioResult);
+        await CadastroUsuario(
+          "/usuarios/cadastrar",
+          usuarios,
+          setUsuarioResult
+        );
         toast.success("Usuário cadastrado com sucesso", {
           position: "top-right",
           autoClose: 3000,
