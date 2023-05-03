@@ -15,7 +15,7 @@ import Navbar from "./components/estaticos/navbar/Navbar";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import store from "./store/store";
+import store from "./store/Store"
 
 function App() {
   return (
